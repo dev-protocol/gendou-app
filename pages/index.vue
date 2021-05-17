@@ -1,63 +1,64 @@
 <template>
-  <a-layout class="layout">
-    <Header />
-    <a-layout-content class="content">
-      <lottie
-        class="lottie"
-        :options="defaultOptions"
-        :start="animationStart"
-        :width="0"
-        :height="0"
-        @animCreated="handleAnimation"
-      />
-      <div class="information">
-        <div class="message">
-          <p class="welcome display-3">
-            Welcome to<br />
-            the sustainable<br />
-            world for OSS
-          </p>
-          <p class="airdrop display-5">
-            DEV Airdrop for
-            <span class="light-blue"
-              >most <br />
-              active</span
-            >
-            GitHub users
-          </p>
-        </div>
-        <div class="sponsored">
-          <div class="pic"><img src="/image/pic01.png" alt="sindre" /></div>
-          <div class="profile">
-            <div class="row-01">
-              <p class="display-6">Sponsored by</p>
-              <img src="/image/heart.png" alt="heart" />
-            </div>
-            <div class="row-02 display-4">Sindre Sorhus</div>
-            <p class="row-03 display-6">
-              The program is supported by<br />
-              a donation by Sindre Sorhus
+  <div>
+    <lottie
+      class="lottie"
+      :options="defaultOptions"
+      :start="animationStart"
+      :width="0"
+      @complete="handleComplete"
+    />
+    <a-layout class="layout">
+      <Header />
+      <a-layout-content class="content" :class="{ active: animationStart }">
+        <div class="information">
+          <div class="message">
+            <p class="welcome display-3">
+              Welcome to<br />
+              the sustainable<br />
+              world for OSS
+            </p>
+            <p class="airdrop display-5">
+              DEV Airdrop for
+              <span class="light-blue"
+                >most <br />
+                active</span
+              >
+              GitHub users
             </p>
           </div>
+          <div class="sponsored">
+            <div class="pic"><img src="/image/pic01.png" alt="sindre" /></div>
+            <div class="profile">
+              <div class="row-01">
+                <p class="display-6">Sponsored by</p>
+                <img src="/image/heart.png" alt="heart" />
+              </div>
+              <div class="row-02 display-4">Sindre Sorhus</div>
+              <p class="row-03 display-6">
+                The program is supported by<br />
+                a donation by Sindre Sorhus
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="button-wrapper" :class="{ active: animationStart }">
-        <a-button
-          type="default"
-          class="button display-5"
-          @click="handleAnimationStart"
-          >Connect to Github with Torus</a-button
-        >
-      </div>
-    </a-layout-content>
-  </a-layout>
+        <div class="button-wrapper">
+          <Connect @isConnectTorusWallet="handleConnectTorusWallet" />
+        </div>
+      </a-layout-content>
+    </a-layout>
+  </div>
 </template>
 <script>
+import { mapActions, mapState } from 'vuex'
 import Lottie from '~/components/Lottie'
 
 import * as animationData from '~/assets/animationTest.json'
 
 export default {
+  computed: mapState({
+    isConnected: (state) => state.isConnected,
+    githubUserName: (state) => state.githubUserName,
+  }),
   components: {
     Lottie,
   },
@@ -69,16 +70,77 @@ export default {
     }
   },
   methods: {
-    handleAnimation(anim) {
-      this.anim = anim
+    async handleConnectTorusWallet(res) {
+      if (res === false) {
+        await this.stopLoadingConnectButton()
+        this.infoGithubAccount()
+        return
+      }
+
+      try {
+        await this.getPrizeInfo()
+        this.animationStart = true
+      } catch (e) {
+        await this.stopLoadingConnectButton()
+
+        this.openNotificationWithIcon(
+          'error',
+          'An error has occurred',
+          'Please try again after a while'
+        )
+        console.error(e.message)
+      }
+
+      await this.stopLoadingConnectButton()
     },
     handleAnimationStart() {
       this.animationStart = true
     },
+    async handleComplete() {
+      if (await this.isGotPrize()) {
+        this.$router.push('/result01')
+      } else {
+        this.$router.push('/result02')
+      }
+    },
+    openNotificationWithIcon(type, message, description) {
+      this.$notification[type]({
+        message,
+        description,
+        duration: 0,
+      })
+    },
+    infoGithubAccount() {
+      this.$info({
+        title: 'Github account connect error',
+        content: (
+          <div>
+            <p>
+              Click "More Options" to select Github.
+              <br />
+              <br />
+              <img src="/image/pic07.png" style="width: 100%" />
+              <br />
+              <br />
+              Then click the Github icon from the newly added icons
+              <br />
+              <br />
+              <img src="/image/pic08.png" style="width: 100%" />
+            </p>
+          </div>
+        ),
+      })
+    },
+    ...mapActions(['getPrizeInfo', 'isGotPrize', 'stopLoadingConnectButton']),
   },
 }
 </script>
 <style lang="scss">
+body {
+  background: url('/images/Animation_Test_001_0001.jpg') no-repeat;
+  background-size: 100% auto;
+}
+
 .layout {
   position: relative;
   left: 50%;
@@ -96,25 +158,30 @@ export default {
   }
 }
 
-.content {
-  position: relative;
-  padding-bottom: 246px;
+.lottie {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
 
+@media (max-width: 576px) {
   .lottie {
     position: absolute;
-    top: 0;
+    top: 100px;
     left: 0;
     z-index: 0;
   }
+}
 
-  @media (max-width: 576px) {
-    .lottie {
-      position: absolute;
-      top: 100px;
-      left: 0;
-      z-index: 0;
-    }
-  }
+.active {
+  transition: opacity 0.4s ease-out;
+  opacity: 0;
+}
+
+.content {
+  position: relative;
+  padding-bottom: 246px;
 
   .information {
     position: relative;
@@ -208,11 +275,6 @@ export default {
     justify-content: center;
     margin-top: 6px;
     width: 100%;
-
-    &.active {
-      transition: opacity 0.4s ease-out;
-      opacity: 0;
-    }
 
     .button {
       padding: 8px 24px;
