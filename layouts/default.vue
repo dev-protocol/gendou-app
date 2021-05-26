@@ -1,20 +1,17 @@
 <template>
   <div>
+    <lottie
+      class="lottie"
+      :controled="controled"
+      :options="defaultOptions"
+      :start="opening"
+      :width="0"
+      @complete="handleComplete"
+    />
     <div class="hero">
-      <lottie
-        class="lottie"
-        :controled="controled"
-        :options="defaultOptions"
-        :start="opening"
-        :width="0"
-        @complete="handleComplete"
-      />
       <Header />
-      <div class="hero-contents">
-        <slot name="hero"></slot>
-      </div>
+      <Nuxt class="nuxt-app" />
     </div>
-    <slot name="main"></slot>
     <Footer />
   </div>
 </template>
@@ -66,7 +63,10 @@ export default Vue.extend({
     }
   }
 }
-.hero-contents {
+.hero {
+  min-height: calc(100vw * 0.5625);
+}
+.nuxt-app {
   position: relative;
 }
 // @media (max-width: 576px) {

@@ -1,4 +1,4 @@
-<template v-slot="hero">
+<template>
   <a-layout class="layout fadein">
     <a-layout-content class="content">
       <ShowClaimUrl v-if="prize > 0 && claimUrl !== ''" />
