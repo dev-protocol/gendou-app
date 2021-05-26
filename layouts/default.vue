@@ -1,15 +1,21 @@
 <template>
   <div>
-    <lottie
-      class="lottie"
-      :controled="controled"
-      :options="defaultOptions"
-      :start="opening"
-      :width="0"
-      @complete="handleComplete"
-    />
-    <Header />
-    <Nuxt class="nuxt-app" />
+    <div class="hero">
+      <lottie
+        class="lottie"
+        :controled="controled"
+        :options="defaultOptions"
+        :start="opening"
+        :width="0"
+        @complete="handleComplete"
+      />
+      <Header />
+      <div class="hero-contents">
+        <slot name="hero"></slot>
+      </div>
+    </div>
+    <slot name="main"></slot>
+    <Footer />
   </div>
 </template>
 
@@ -60,7 +66,7 @@ export default Vue.extend({
     }
   }
 }
-.nuxt-app {
+.hero-contents {
   position: relative;
 }
 // @media (max-width: 576px) {
