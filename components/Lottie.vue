@@ -1,5 +1,7 @@
 <template>
-  <div ref="lavContainer" class="door-animation"></div>
+  <div class="wrapper">
+    <div ref="lavContainer" class="door-animation"></div>
+  </div>
 </template>
 
 <script>
@@ -45,16 +47,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.door-animation {
+.wrapper {
   width: 100%;
   height: 42rem;
   overflow: hidden;
-  font-size: 0;
-  line-height: 0;
   background: url('/images/fantasy-sky_90839-278.jpg') no-repeat center center;
   background-size: auto 100%;
   @media (min-width: 980px) {
     height: auto;
   }
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 12rem;
+    width: 100%;
+    background-image: linear-gradient(to top, white, transparent);
+  }
+}
+.door-animation {
+  font-size: 0;
+  line-height: 0;
 }
 </style>
