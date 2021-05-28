@@ -11,10 +11,25 @@
       </div>
 
       <a-steps class="flow" direction="vertical" :current="1">
-        <a-step
-          title="Check"
-          description="Check your maximum reward you can get."
-        />
+        <a-step title="Check"
+          ><template slot="description">
+            <div>
+              <p>Check your maximum reward you can get.</p>
+              <a
+                ref="noopener noreferrer"
+                class="tweet"
+                :href="
+                  '//twitter.com/intent/tweet?text=My claimable reward was ' +
+                  prize +
+                  ' DEV%0ADev Airdrop 🎁🎁 Get DEV tokens with your commits to OSS 👩‍💻👨‍💻%0A%0AFor most active GitHub users!&url=https://airdrop.devprotocol.xyz&hashtags=devprotocol'
+                "
+                target="_blank"
+              >
+                <a-icon type="twitter" /> Tweet my claimable reward
+              </a>
+            </div></template
+          ></a-step
+        >
         <a-step title="Entry">
           <template slot="description"
             ><div>
@@ -113,6 +128,13 @@ export default {
     border: none;
     color: #fff;
     background-color: #0a0a0a;
+  }
+}
+
+.tweet {
+  &,
+  &:hover {
+    color: #1da1f2;
   }
 }
 
