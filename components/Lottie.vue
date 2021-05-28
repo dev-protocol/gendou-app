@@ -1,7 +1,5 @@
 <template>
-  <div class="wrapper">
-    <div ref="lavContainer" class="door-animation"></div>
-  </div>
+  <div ref="lavContainer" class="door-animation"></div>
 </template>
 
 <script>
@@ -47,10 +45,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
+.door-animation {
   width: 100%;
   height: 42rem;
   overflow: hidden;
+  font-size: 0;
+  line-height: 0;
   background: url('/images/fantasy-sky_90839-278.jpg') no-repeat center center;
   background-size: auto 100%;
   @media (min-width: 980px) {
@@ -66,9 +66,5 @@ export default {
     width: 100%;
     background-image: linear-gradient(to top, white, transparent);
   }
-}
-.door-animation {
-  font-size: 0;
-  line-height: 0;
 }
 </style>
