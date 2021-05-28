@@ -62,7 +62,7 @@ export default {
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 12rem;
+    height: calc(100vw * 0.15);
     width: 100%;
     background-image: linear-gradient(to top, white, transparent);
   }
