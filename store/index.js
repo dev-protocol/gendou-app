@@ -13,6 +13,7 @@ export const state = () => ({
   claimUrl: '',
   stakersAPY: 0,
   creatorsAPY: 0,
+  contributions: 0,
 })
 
 export const getters = {

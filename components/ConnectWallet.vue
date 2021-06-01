@@ -1,14 +1,18 @@
 <template>
-  <a :href="githubAuthUrl">
-    <a-button type="default" class="button display-5" :disabled="disabled">
-      Connect to your GitHub Account
-    </a-button>
-  </a>
+  <a-button
+    type="default"
+    class="button display-5"
+    :disabled="disabled"
+    @click="showModal"
+  >
+    <span v-if="isConnected">Connected</span>
+    <span v-else>Connect to your wallet</span>
+  </a-button>
 </template>
 
 <script>
 import Vue from 'vue'
-import { mapState } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
 export default Vue.extend({
   props: {
@@ -17,18 +21,28 @@ export default Vue.extend({
       default: false,
     },
   },
+  data() {
+    return {
+      isConnected: false,
+    }
+  },
+  fetch() {
+    console.log(this.$web3modal.getProvider())
+    this.isConnected = this.$web3modal.getProvider() !== undefined
+  },
   computed: {
-    githubAuthUrl() {
-      const redirectUri =
-        process.env.REDIRECT_URI ||
-        `${window.location.protocol}//${window.location.host}/auth`
-      const clientId = process.env.GITHUB_CLIENT_ID || 'af27125807c57127f1fe'
-      return this.requestState
-        ? `https://github.com/login/oauth/authorize?client_id=${clientId}&state=${this.requestState}&redirect_uri=${redirectUri}`
-        : ''
-    },
     ...mapState({
       requestState: (state) => state.github.requestState,
+    }),
+  },
+  methods: {
+    async showModal() {
+      const provider = await this.$web3modal.connect()
+      console.log('show web3modal', provider)
+      this.setCurrentStep(3)
+    },
+    ...mapMutations({
+      setCurrentStep: 'claim/setCurrentStep',
     }),
   },
 })

@@ -6,7 +6,7 @@
 
 <script>
 import Vue from 'vue'
-import { mapActions, mapGetters, mapState } from 'vuex'
+import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 
 export default Vue.extend({
   computed: {
@@ -33,12 +33,16 @@ export default Vue.extend({
         key: 'fetchtch-claim-info',
       })
     } else {
-      this.$router.push('/claim')
+      this.setCurrentStep(2)
+      this.$router.push('/newresult')
     }
   },
   methods: {
     ...mapActions({
       fetchClaimInfo: 'github/fetchClaimInfo',
+    }),
+    ...mapMutations({
+      setCurrentStep: 'claim/setCurrentStep',
     }),
   },
 })
