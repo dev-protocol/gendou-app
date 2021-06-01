@@ -18,38 +18,37 @@
 
     <a-steps class="flow" direction="vertical" :current="currentStep">
       <a-step>
-        <template slot="title">
+        <template slot="description">
           <ConnectGitHubApp :disabled="currentStep !== 1" />
         </template>
-        <template slot="description"> &nbsp; </template>
       </a-step>
       <a-step>
-        <template slot="title">
+        <template slot="description">
           <ConnectWallet :disabled="currentStep !== 2" />
         </template>
-        <template slot="description"> &nbsp; </template>
       </a-step>
       <a-step title="Please read the following notes and sign if you agree">
         <template slot="description"
-          ><div>
-            <aside class="prepare">
-              <h3>
-                <a-icon type="check-square" />Your claimable reward is undecided
-                at the time of entry.
-              </h3>
-              <h3>
-                <a-icon type="check-square" />After closing, the all entries are
-                sorted by the number of calculated contributions and then mapped
-                to the rewards table. Even if the calculated contributions meet
-                the criteria for the reward table, the result of the sorting
-                process may result in the quota being moved down.
-              </h3>
-              <h3>
-                <a-icon type="check-square" />
-                Entries with tampered contributions will be excluded by review.
-              </h3>
-            </aside>
-            <SignButton :disabled="currentStep !== 3" />
+          ><div class="entry">
+            <a-form>
+              <a-checkbox-group
+                v-model="agreements"
+                class="agreements"
+                :options="agreementsOptions"
+              />
+            </a-form>
+            <SignButton
+              :disabled="
+                currentStep !== 3 || agreements.length < 3 || entryed.success
+              "
+              :loading="entering"
+              @click="onClickSign"
+              @signed="onSigned"
+            />
+            <div v-if="entryed.success" class="finished">
+              <a-icon type="check-circle" />
+              Finished
+            </div>
           </div>
         </template>
       </a-step>
@@ -138,7 +137,21 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 
+const agreementsOptions = [
+  'Your claimable reward is undecided at the time of entry',
+  'After closing, the all entries are sorted by the number of calculated contributions and then mapped to the rewards table. Even if the calculated contributions meet the criteria for the reward table, the result of the sorting process may result in the quota being moved down.',
+  'Entries with tampered contributions will be excluded by review.',
+]
+
 export default {
+  data() {
+    return {
+      agreementsOptions,
+      agreements: [],
+      entering: false,
+      entryed: { success: undefined, error: undefined },
+    }
+  },
   async fetch() {
     await this.initDevInfo()
   },
@@ -157,6 +170,17 @@ export default {
     ...mapActions({
       initDevInfo: 'fetchDevInfo',
     }),
+    onClickSign(e) {
+      console.log(e)
+      this.entering = true
+    },
+    async onSigned(e) {
+      console.log(e)
+      this.entering = false
+      // TODO: Calling the Entry API
+      await new Promise((resolve) => setTimeout(resolve, 2000))
+      this.entryed = { success: true }
+    },
   },
 }
 </script>
@@ -166,6 +190,25 @@ export default {
   .layout {
     padding: 0 25px;
   }
+}
+
+.entry,
+.agreements {
+  display: grid;
+  gap: 1rem;
+  justify-items: baseline;
+}
+
+.finished {
+  display: grid;
+  grid-gap: 1rem;
+  gap: 1rem;
+  grid-auto-flow: column;
+  align-items: center;
+  color: #4caf50;
+  padding: 0.8rem 1rem;
+  justify-content: start;
+  font-size: 1.5rem;
 }
 
 .button {
@@ -206,6 +249,9 @@ export default {
   .ant-steps-item-active .ant-steps-item-title,
   .ant-steps-item-active .ant-steps-item-description {
     color: black !important;
+  }
+  &.ant-steps-vertical .ant-steps-item-description {
+    padding-bottom: 3rem;
   }
 }
 

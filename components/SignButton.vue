@@ -2,8 +2,8 @@
   <a-button
     type="default"
     class="button display-5"
+    :loading="loading"
     :disabled="disabled"
-    @click="sign"
   >
     Sign
   </a-button>
@@ -20,6 +20,10 @@ export default Vue.extend({
       type: Boolean,
       default: false,
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     ...mapState({
@@ -28,12 +32,25 @@ export default Vue.extend({
   },
   methods: {
     async sign() {
-      const provider = this.$web3modal.connect()
-      const web3 = new Web3(provider)
-      const inputMessage = ''
-      const [account] = await web3.eth.getAccounts()
-      const signature = await web3.eth.personal.sign(inputMessage, account, '')
-      console.log(signature)
+      try {
+        const provider = this.$web3modal.connect()
+        const web3 = new Web3(provider)
+        const inputMessage = ''
+        const [account] = await web3.eth.getAccounts()
+        const signature = await web3.eth.personal.sign(
+          inputMessage,
+          account,
+          ''
+        )
+        console.log(signature)
+        this.$emit('signed', { signature, message: inputMessage })
+      } catch (error) {
+        this.$emit('signed', {
+          signature: undefined,
+          message: undefined,
+          error,
+        })
+      }
     },
   },
 })
