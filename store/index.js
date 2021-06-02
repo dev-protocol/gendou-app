@@ -73,5 +73,6 @@ export const actions = {
     const { code, signature } = options
     const res = await _fetchEntry(this.$axios, code, signature)
     commit('setEntryResults', res)
+    return res
   },
 }

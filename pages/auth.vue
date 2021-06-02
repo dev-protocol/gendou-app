@@ -34,7 +34,7 @@ export default Vue.extend({
         key: 'fetchtch-claim-info',
       })
     } else {
-      this.$router.push('/newresult')
+      this.$router.push('/result')
     }
   },
   methods: {

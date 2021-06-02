@@ -78,7 +78,7 @@ export default Vue.extend({
       if (mutation.type !== 'door/toggle' || mutation.payload !== true) {
         return
       }
-      this.$router.push(`/newresult`)
+      this.$router.push(`/result`)
     })
   },
   beforeDestroy() {

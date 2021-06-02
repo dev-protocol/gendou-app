@@ -7,38 +7,81 @@
         <a-icon v-if="prizeUSD === 0" type="loading" />
         <span v-else>${{ prizeUSD }}</span> in USD
       </p>
+      <p class="contributions">
+        Your calculated contributions is:<br />
+        <span class="contributions-count">{{ contributions }}</span>
+      </p>
+      <p class="contributions-description">
+        *Geometric mean of annual<br />total contributions over the last 5 years
+      </p>
+      <p class="center">
+        <a
+          ref="noopener noreferrer"
+          class="tweet"
+          :href="
+            '//twitter.com/intent/tweet?text=My contributions score was ' +
+            contributions +
+            ' and claimable reward was ' +
+            prize +
+            ' DEV%0ADev Airdrop 🎁🎁 Get DEV tokens with your contributions to OSS 👩‍💻👨‍💻%0A%0AFor most active GitHub users!&url=https://airdrop.devprotocol.xyz&hashtags=devprotocol'
+          "
+          target="_blank"
+        >
+          <a-icon type="twitter" /> Tweet
+        </a>
+      </p>
     </div>
 
-    <a-steps class="flow" direction="vertical" :current="1">
-      <a-step title="Check"
-        ><template slot="description">
-          <div>
-            <p>Check your maximum reward you can get.</p>
-            <a
-              ref="noopener noreferrer"
-              class="tweet"
-              :href="
-                '//twitter.com/intent/tweet?text=My claimable reward was ' +
-                prize +
-                ' DEV%0ADev Airdrop 🎁🎁 Get DEV tokens with your commits to OSS 👩‍💻👨‍💻%0A%0AFor most active GitHub users!&url=https://airdrop.devprotocol.xyz&hashtags=devprotocol'
+    <a-steps class="flow" direction="vertical" :current="currentStep">
+      <a-step>
+        <template slot="description">
+          <ConnectGitHubApp :disabled="currentStep !== 0" />
+        </template>
+      </a-step>
+      <a-step>
+        <template slot="description">
+          <ConnectWallet :disabled="currentStep !== 1" />
+        </template>
+      </a-step>
+      <a-step title="Please read the following notes and sign if you agree">
+        <template slot="description"
+          ><div class="entry">
+            <a-form>
+              <a-checkbox-group
+                v-model="agreements"
+                class="agreements"
+                :options="agreementsOptions"
+              />
+            </a-form>
+            <a-alert
+              v-if="entryError"
+              :message="'Please try again: ' + entryError"
+              banner
+            />
+            <SignButton
+              :disabled="
+                currentStep !== 2 ||
+                agreements.length < agreementsOptionsCount ||
+                entrySucceed
               "
-              target="_blank"
-            >
-              <a-icon type="twitter" /> Tweet my claimable reward
-            </a>
-          </div></template
-        ></a-step
-      >
-      <a-step title="Entry">
+              :loading="entering"
+              @signed="onSigned"
+            />
+            <div v-if="entrySucceed" class="finished">
+              <a-icon type="check-circle" />
+              Successful entry
+            </div>
+          </div>
+        </template>
+      </a-step>
+      <a-step title="Claiming">
         <template slot="description"
           ><div>
             <p>
-              Entry is scheduled to open on June 3. Come back here on June 3 and
-              fill out an airdrop form to have a chance at getting the reward.
-              Rewards will be distributed on a first-come, first-served basis,
-              and you may not get a reward once the quota is full. Be sure to
-              follow us on Twitter and join on Discord to be the first to know
-              when the entry open!
+              Entry is closed on June 3. Come back here on June 3 and check your
+              determined claimable reward. Be sure to follow us on Twitter and
+              join Discord to be the first to know when the determind your
+              reward!
             </p>
             <ul class="social-links">
               <li>
@@ -92,13 +135,9 @@
                 </li>
               </ol>
             </aside>
-          </div></template
-        ></a-step
-      >
-      <a-step
-        title="Claiming"
-        description="After closing the two-week application period, you can claim your reward!"
-      />
+          </div>
+        </template>
+      </a-step>
     </a-steps>
 
     <div class="next">
@@ -118,10 +157,33 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapMutations, mapState } from 'vuex'
+
+const agreementsOptions = [
+  'Your claimable reward is undecided at the time of entry',
+  'After closing, the all entries are sorted by the number of calculated contributions and then mapped to the rewards table. Even if the calculated contributions meet the criteria for the reward table, the result of the sorting process may result in the quota being moved down.',
+  'Entries with tampered contributions will be excluded by review.',
+  'Entries is open for 2 weeks, then reviewed, and claimable after X weeks.',
+]
 
 export default {
+  data() {
+    return {
+      agreementsOptions,
+      agreementsOptionsCount: agreementsOptions.length,
+      agreements: [],
+      entering: false,
+    }
+  },
   async fetch() {
+    // initialize step
+    this.setCurrentStep(0)
+
+    // If the GitHub app has already been connected, use step 2.
+    if (this.code !== '') {
+      this.setCurrentStep(1)
+    }
+
     await this.initDevInfo()
   },
   computed: {
@@ -131,12 +193,39 @@ export default {
       creatorsAPY: (state) => state.creatorsAPY,
       stakersAPY: (state) => state.stakersAPY,
       claimUrl: (state) => state.claimUrl,
+      contributions: (state) => state.contributions,
+      currentStep: (state) => state.claim.currentStep,
+      code: (state) => state.github.code,
+      entrySucceed: (state) =>
+        ((status, data) => status > 199 && status < 300 && !data.message)(
+          state.entryResults.status,
+          state.entryResults.data
+        ),
+      entryError: (state) =>
+        ((status, data) => (status > 399 || data ? data.message : undefined))(
+          state.entryResults.status,
+          state.entryResults.data
+        ),
     }),
   },
   methods: {
+    ...mapMutations({
+      setCurrentStep: 'claim/setCurrentStep',
+    }),
     ...mapActions({
       initDevInfo: 'fetchDevInfo',
+      entry: 'fetchEntry',
     }),
+    async onSigned(e) {
+      this.entering = true
+      const { signature } = e
+      const code = this.code
+      const res = await this.entry({ signature, code })
+      this.entering = false
+      if (res.status === 200 && res.data.github_id) {
+        this.setCurrentStep(3)
+      }
+    },
   },
 }
 </script>
@@ -146,6 +235,25 @@ export default {
   .layout {
     padding: 0 25px;
   }
+}
+
+.entry,
+.agreements {
+  display: grid;
+  gap: 1rem;
+  justify-items: baseline;
+}
+
+.finished {
+  display: grid;
+  grid-gap: 1rem;
+  gap: 1rem;
+  grid-auto-flow: column;
+  align-items: center;
+  color: #4caf50;
+  padding: 0.8rem 1rem;
+  justify-content: start;
+  font-size: 1.5rem;
 }
 
 .button {
@@ -165,10 +273,22 @@ export default {
   }
 }
 
+.center {
+  text-align: center;
+}
+
 .tweet {
+  background: #1da1f2;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  font-size: 1.4rem;
+  font-family: 'IBM Plex Mono', monospace;
+  gap: 1rem;
   &,
   &:hover {
-    color: #1da1f2;
+    color: white;
   }
 }
 
@@ -187,6 +307,16 @@ export default {
   .ant-steps-item-active .ant-steps-item-title,
   .ant-steps-item-active .ant-steps-item-description {
     color: black !important;
+  }
+  .ant-steps-item-title:empty {
+    display: none;
+  }
+  &.ant-steps-vertical .ant-steps-item-content {
+    display: grid;
+    gap: 1rem;
+  }
+  &.ant-steps-vertical .ant-steps-item-description {
+    padding-bottom: 3rem;
   }
 }
 
@@ -240,6 +370,10 @@ export default {
   padding: 0.8rem;
   margin-top: 1rem;
   font-family: sans-serif;
+  h3,
+  h4 {
+    color: inherit;
+  }
   &-items {
     padding-left: 2rem;
     > li {
@@ -262,6 +396,10 @@ export default {
 .result {
   display: grid;
   gap: 1rem;
+  margin-bottom: 12rem;
+  @media (max-width: 576px) {
+    margin-bottom: 6rem;
+  }
   & > * {
     margin: 0;
   }
@@ -283,6 +421,25 @@ export default {
   .usd {
     font-family: 'Whyte Inktrap', sans-serif;
     text-align: center;
+  }
+
+  .contributions {
+    font-family: 'Whyte Inktrap', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    margin: 3rem auto;
+    margin-bottom: 0;
+    &-count {
+      font-size: 4rem;
+      @media (max-width: 576px) {
+        font-size: 2rem;
+      }
+    }
+    &-description {
+      font-size: 14px;
+      text-align: center;
+      font-weight: normal;
+    }
   }
 }
 
