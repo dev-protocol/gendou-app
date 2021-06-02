@@ -33,24 +33,24 @@
           <table>
             <thead>
               <tr>
-                <th>Commits &gt;</th>
+                <th>Contrib &gt;</th>
                 <th># of people</th>
                 <th>Reward</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>5,000</td>
+                <td>3,000</td>
                 <td>3</td>
                 <td>1,000</td>
               </tr>
               <tr>
-                <td>2,000</td>
+                <td>1,200</td>
                 <td>200</td>
                 <td>400</td>
               </tr>
               <tr>
-                <td>500</td>
+                <td>300</td>
                 <td>2,000</td>
                 <td>100</td>
               </tr>
