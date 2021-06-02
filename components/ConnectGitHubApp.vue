@@ -1,7 +1,7 @@
 <template>
   <a :href="githubAuthUrl">
     <a-button type="default" class="button display-5" :disabled="disabled">
-      Connect to your GitHub Account
+      Connect to GitHub
     </a-button>
   </a>
 </template>

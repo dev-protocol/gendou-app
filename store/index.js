@@ -1,7 +1,10 @@
 import Web3 from 'web3'
 import BigNumber from 'bignumber.js'
 import { getStats, getAPY } from '~/utils/devkit'
-import { fetchPrizeInfo } from '~/utils/gendou-backend'
+import {
+  fetchPrizeInfo,
+  fetchEntry as _fetchEntry,
+} from '~/utils/gendou-backend'
 import { toNaturalNumber } from '~/utils/bignumber'
 import { HTTP_PROVIDER_URL } from '~/utils/web3'
 
@@ -14,21 +17,25 @@ export const state = () => ({
   stakersAPY: 0,
   creatorsAPY: 0,
   contributions: 0,
+  entryResults: {},
 })
 
 export const getters = {
   getClaimUrl: (state) => state.claimUrl,
   isGotPrize: (state) => state.reward > 0,
+  entryResults: (state) => state.entryResults,
 }
 
 export const mutations = {
   setAccount: (state, value) => (state.account = value),
   setGitHubId: (state, value) => (state.githubId = value),
   setReward: (state, value) => (state.reward = value),
+  setContributions: (state, value) => (state.contributions = value),
   setRewardUSD: (state, value) => (state.rewardUSD = value),
   setStakersAPY: (state, value) => (state.stakersAPY = value),
   setCreatorsAPY: (state, value) => (state.creatorsAPY = value),
   setClaimUrl: (state, value) => (state.claimUrl = value),
+  setEntryResults: (state, value) => (state.entryResults = value),
 }
 
 export const actions = {
@@ -38,6 +45,9 @@ export const actions = {
 
     if (data.reward) {
       commit('setReward', toNaturalNumber(data.reward))
+    }
+    if (data.contributions) {
+      commit('setContributions', data.contributions)
     }
   },
   async fetchDevInfo({ commit, state }) {
@@ -58,5 +68,10 @@ export const actions = {
     commit('setRewardUSD', rewardUSD)
     commit('setCreatorsAPY', creatorsAPY)
     commit('setStakersAPY', stakersAPY)
+  },
+  async fetchEntry({ commit }, options) {
+    const { code, signature } = options
+    const res = await _fetchEntry(this.$axios, code, signature)
+    commit('setEntryResults', res)
   },
 }

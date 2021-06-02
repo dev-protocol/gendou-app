@@ -1,5 +1,8 @@
 import { v4 as uuidv4 } from 'uuid'
-import { fetchClaimUrl } from '~/utils/gendou-backend'
+import {
+  fetchClaimUrl,
+  fetchInfoByCode as _fetchInfoByCode,
+} from '~/utils/gendou-backend'
 import { toNaturalNumber } from '~/utils/bignumber'
 
 const isConnected = false
@@ -30,6 +33,13 @@ export const actions = {
     const res = await fetchClaimUrl(this.$axios, code)
     commit('setClaimUrl', res.data.claim_url, { root: true })
     commit('setReward', toNaturalNumber(res.data.reward), { root: true })
+  },
+  async fetchInfoByCode({ commit }, code) {
+    commit('setCode', code)
+
+    const res = await _fetchInfoByCode(this.$axios, code)
+    commit('setReward', toNaturalNumber(res.data.reward), { root: true })
+    commit('setContributions', res.data.contributions, { root: true })
   },
   generateReuqestState({ commit }) {
     const state = uuidv4()

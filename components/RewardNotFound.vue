@@ -88,7 +88,8 @@
       border: none;
       cursor: pointer;
 
-      &:hover {
+      &:hover,
+      &:focus {
         border: none;
       }
     }

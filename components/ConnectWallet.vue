@@ -6,7 +6,7 @@
     @click="showModal"
   >
     <span v-if="isConnected">Connected</span>
-    <span v-else>Connect to your wallet</span>
+    <span v-else>Connect to a wallet</span>
   </a-button>
 </template>
 
