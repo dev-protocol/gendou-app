@@ -4,6 +4,7 @@
     class="button display-5"
     :loading="loading"
     :disabled="disabled"
+    @click="sign"
   >
     Sign
   </a-button>
@@ -33,7 +34,7 @@ export default Vue.extend({
   methods: {
     async sign() {
       try {
-        const provider = this.$web3modal.connect()
+        const provider = await this.$web3modal.connect()
         const web3 = new Web3(provider)
         const inputMessage = ''
         const [account] = await web3.eth.getAccounts()
