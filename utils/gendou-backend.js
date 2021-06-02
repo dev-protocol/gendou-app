@@ -19,7 +19,7 @@ export const fetchInfoByCode = async (axios, code) => {
 }
 
 // entry API for v2
-export const fetchEntry = async (axios, code, signature) => {
+export const fetchEntry = async (axios, accessToken, signature) => {
   const url = GET_GENDOU_API_URL + `/entry`
-  return await axios.post(url, { code, sign: signature })
+  return await axios.post(url, { access_token: accessToken, sign: signature })
 }

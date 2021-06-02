@@ -70,8 +70,8 @@ export const actions = {
     commit('setStakersAPY', stakersAPY)
   },
   async fetchEntry({ commit }, options) {
-    const { code, signature } = options
-    const res = await _fetchEntry(this.$axios, code, signature)
+    const { accessToken, signature } = options
+    const res = await _fetchEntry(this.$axios, accessToken, signature)
     commit('setEntryResults', res)
     return res
   },

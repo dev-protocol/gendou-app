@@ -180,7 +180,7 @@ export default {
     this.setCurrentStep(0)
 
     // If the GitHub app has already been connected, use step 2.
-    if (this.code !== '') {
+    if (this.accessToken !== '') {
       this.setCurrentStep(1)
     }
 
@@ -195,7 +195,7 @@ export default {
       claimUrl: (state) => state.claimUrl,
       contributions: (state) => state.contributions,
       currentStep: (state) => state.claim.currentStep,
-      code: (state) => state.github.code,
+      accessToken: (state) => state.github.accessToken,
       entrySucceed: (state) =>
         ((status, data) => status > 199 && status < 300 && !data.message)(
           state.entryResults.status,
@@ -219,8 +219,8 @@ export default {
     async onSigned(e) {
       this.entering = true
       const { signature } = e
-      const code = this.code
-      const res = await this.entry({ signature, code })
+      const accessToken = this.accessToken
+      const res = await this.entry({ signature, accessToken })
       this.entering = false
       if (res.status === 200 && res.data.github_id) {
         this.setCurrentStep(3)

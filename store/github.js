@@ -9,21 +9,25 @@ const isConnected = false
 const username = ''
 const code = ''
 const requestState = ''
+const accessToken = ''
 
 export const state = () => ({
   isConnected,
   username,
   code,
   requestState,
+  accessToken,
 })
 
 export const mutations = {
   setCode: (state, value) => (state.code = value),
   setRequestState: (state, value) => (state.requestState = value),
+  setAccessToken: (state, value) => (state.accessToken = value),
 }
 
 export const getters = {
   getStateFromStorage: () => window.sessionStorage.getItem('github-app-state'),
+  getAccessToken: (state) => state.accessToken,
 }
 
 export const actions = {
@@ -38,6 +42,7 @@ export const actions = {
     commit('setCode', code)
 
     const res = await _fetchInfoByCode(this.$axios, code)
+    commit('setAccessToken', res.data.access_token)
     commit('setReward', toNaturalNumber(res.data.reward), { root: true })
     commit('setContributions', res.data.contributions, { root: true })
   },
