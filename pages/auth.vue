@@ -33,7 +33,6 @@ export default Vue.extend({
         key: 'fetchtch-claim-info',
       })
     } else {
-      this.setCurrentStep(2)
       this.$router.push('/newresult')
     }
   },

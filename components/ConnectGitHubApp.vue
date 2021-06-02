@@ -35,23 +35,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.button {
-  padding: 8px 24px;
-  height: initial;
-  color: #fff;
-  background-color: #0a0a0a;
-  line-height: 32px;
-  border-radius: 0;
-  border: none;
-  cursor: pointer;
-  &:hover {
-    border: none;
-  }
-  &[disabled] {
-    background-color: #ccc;
-  }
-}
-
 @media (max-width: 576px) {
   .button {
     padding: 10px 15px;

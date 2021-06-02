@@ -19,12 +19,12 @@
     <a-steps class="flow" direction="vertical" :current="currentStep">
       <a-step>
         <template slot="description">
-          <ConnectGitHubApp :disabled="currentStep !== 1" />
+          <ConnectGitHubApp :disabled="currentStep !== 0" />
         </template>
       </a-step>
       <a-step>
         <template slot="description">
-          <ConnectWallet :disabled="currentStep !== 2" />
+          <ConnectWallet :disabled="currentStep !== 1" />
         </template>
       </a-step>
       <a-step title="Please read the following notes and sign if you agree">
@@ -39,7 +39,7 @@
             </a-form>
             <SignButton
               :disabled="
-                currentStep !== 3 || agreements.length < 3 || entryed.success
+                currentStep !== 2 || agreements.length < 3 || entryed.success
               "
               :loading="entering"
               @click="onClickSign"
@@ -135,7 +135,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapMutations, mapState } from 'vuex'
 
 const agreementsOptions = [
   'Your claimable reward is undecided at the time of entry',
@@ -153,6 +153,14 @@ export default {
     }
   },
   async fetch() {
+    // initialize step
+    this.setCurrentStep(0)
+
+    // If the GitHub app has already been connected, use step 2.
+    if (this.code !== '') {
+      this.setCurrentStep(1)
+    }
+
     await this.initDevInfo()
   },
   computed: {
@@ -164,9 +172,13 @@ export default {
       claimUrl: (state) => state.claimUrl,
       contributions: (state) => state.contributions,
       currentStep: (state) => state.claim.currentStep,
+      code: (state) => state.github.code,
     }),
   },
   methods: {
+    ...mapMutations({
+      setCurrentStep: 'claim/setCurrentStep',
+    }),
     ...mapActions({
       initDevInfo: 'fetchDevInfo',
     }),
@@ -180,6 +192,7 @@ export default {
       // TODO: Calling the Entry API
       await new Promise((resolve) => setTimeout(resolve, 2000))
       this.entryed = { success: true }
+      this.setCurrentStep(3)
     },
   },
 }
