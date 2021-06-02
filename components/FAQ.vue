@@ -18,15 +18,21 @@
       </p>
       <dl>
         <dt>Campaign Period</dt>
-        <dd>28th May - 24th June (About 1 month)</dd>
+        <dd>
+          Entry: June 3 - June 17, 23:59 UTC. Determination: June 24. Claimable:
+          July 7
+        </dd>
         <dt>Details</dt>
         <dd>
-          In accordance with your number of commits at GitHub in the last one
-          year period (2020-05-01 to 2021-05-01), you’ll get at most 1000 DEV
-          token. We’re giving out the total amount of 283,000 DEV to the first
-          2,203 applicants. As soon as the first 2,203 people have received DEV,
-          we’ll close the campaign. If you’re willing to join, please take
-          advantage of the program while you can.
+          By your
+          <strong
+            >geometric mean of annual public contributions on GitHub in the last
+            3 years period</strong
+          >
+          (2028-05-01 to 2021-05-01), you'll get at most 1000 DEV tokens. We're
+          giving out the total amount of 283,000 DEV to the first 2,203
+          applicants sorted by contributions that applied users of. If you're
+          willing to join, please take advantage of the program while you can.
         </dd>
         <dt>Rewards table</dt>
         <dd>
@@ -58,8 +64,9 @@
           </table>
           <p>
             <small>
-              *If the first-come-first-served quota is full, it will be
-              automatically moved down.</small
+              *Entries will be allocated from the larger number of calculated
+              contributions and automatically moved down if the corresponding
+              quota is full.</small
             >
           </p>
         </dd>
