@@ -17,6 +17,10 @@ import Web3 from 'web3'
 
 export default Vue.extend({
   props: {
+    message: {
+      type: String,
+      default: '',
+    },
     disabled: {
       type: Boolean,
       default: false,
@@ -36,7 +40,7 @@ export default Vue.extend({
       try {
         const provider = await this.$web3modal.connect()
         const web3 = new Web3(provider)
-        const inputMessage = ''
+        const inputMessage = this.message
         const [account] = await web3.eth.getAccounts()
         const signature = await web3.eth.personal.sign(
           inputMessage,

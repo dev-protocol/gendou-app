@@ -23,11 +23,13 @@ export const mutations = {
   setCode: (state, value) => (state.code = value),
   setRequestState: (state, value) => (state.requestState = value),
   setAccessToken: (state, value) => (state.accessToken = value),
+  setUsername: (state, value) => (state.username = value),
 }
 
 export const getters = {
   getStateFromStorage: () => window.sessionStorage.getItem('github-app-state'),
   getAccessToken: (state) => state.accessToken,
+  getUsername: (state) => state.username,
 }
 
 export const actions = {
@@ -43,6 +45,7 @@ export const actions = {
 
     const res = await _fetchInfoByCode(this.$axios, code)
     commit('setAccessToken', res.data.access_token)
+    commit('setUsername', res.data.github_id)
     commit('setReward', toNaturalNumber(res.data.reward), { root: true })
     commit('setContributions', res.data.contributions, { root: true })
   },

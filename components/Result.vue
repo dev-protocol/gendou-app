@@ -59,6 +59,7 @@
               banner
             />
             <SignButton
+              :message="username"
               :disabled="
                 currentStep !== 2 ||
                 agreements.length < agreementsOptionsCount ||
@@ -196,6 +197,7 @@ export default {
       contributions: (state) => state.contributions,
       currentStep: (state) => state.claim.currentStep,
       accessToken: (state) => state.github.accessToken,
+      username: (state) => state.github.username,
       entrySucceed: (state) =>
         ((status, data) => status > 199 && status < 300 && !data.message)(
           state.entryResults.status,
