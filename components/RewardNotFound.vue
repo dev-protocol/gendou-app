@@ -34,6 +34,8 @@
         >
       </div>
     </div>
+
+    <CtoA transparent="true" class="ctoa" />
   </div>
 </template>
 
@@ -100,6 +102,10 @@
       }
     }
   }
+}
+
+.ctoa {
+  margin-top: 6rem;
 }
 
 @media (max-width: 576px) {

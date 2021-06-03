@@ -9,10 +9,11 @@
       </p>
       <p class="contributions">
         Your calculated contributions is:<br />
-        <span class="contributions-count">{{ contributions }}</span>
-      </p>
-      <p class="contributions-description">
-        *Geometric mean of annual<br />total contributions over the last 3 years
+        <span class="contributions-count">{{ contributions }}</span
+        ><br />
+        <span class="contributions-description">
+          *Geometric mean of annual total contributions over the last 3 years
+        </span>
       </p>
       <p class="center">
         <a
@@ -23,7 +24,7 @@
             contributions +
             ' and claimable reward was ' +
             prize +
-            ' $DEV%0ADev Airdrop 🎁🎁 Get DEV tokens with your contributions to OSS 👩‍💻👨‍💻%0A%0ACheck your rewards and contributions to OSS!&url=https://airdrop.devprotocol.xyz&hashtags=devprotocol'
+            ' $DEV%0ADev Airdrop 🎁🎁 Get DEV tokens with your contributions to OSS! 👩‍💻👨‍💻&url=https://airdrop.devprotocol.xyz&hashtags=devprotocol'
           "
           target="_blank"
         >
@@ -239,7 +240,16 @@ export default {
     }),
     async onSigned(e) {
       this.entering = true
-      const { signature } = e
+      const { signature, error } = e
+      if (error) {
+        this.$message.error({
+          content: error.message,
+          key: 'wallet',
+          duration: 0,
+        })
+        this.entering = false
+        return
+      }
       const accessToken = this.accessToken
       const res = await this.entry({ signature, accessToken })
       this.entering = false

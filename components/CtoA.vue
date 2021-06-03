@@ -1,5 +1,5 @@
 <template>
-  <div class="then expanded-container">
+  <div class="then expanded-container" :transparent="transparent">
     <section class="container">
       <h2 id="earn-more-dev" class="earn">Earn more DEV</h2>
 
@@ -50,8 +50,21 @@
   </div>
 </template>
 
+<script>
+import Vue from 'vue'
+
+export default Vue.extend({
+  props: {
+    transparent: {
+      type: Boolean,
+      default: false,
+    },
+  },
+})
+</script>
+
 <style lang="scss" scoped>
-.then {
+.then:not([transparent]) {
   padding: 3rem 0;
   background: linear-gradient(
     124deg,

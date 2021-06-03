@@ -47,7 +47,6 @@ export default Vue.extend({
           account,
           ''
         )
-        console.log(signature)
         this.$emit('signed', { signature, message: inputMessage })
       } catch (error) {
         this.$emit('signed', {
