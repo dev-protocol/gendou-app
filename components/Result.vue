@@ -260,7 +260,7 @@ export default {
       const accessToken = this.accessToken
       const res = await this.entry({ signature, accessToken })
       this.entering = false
-      if (res.status === 200 && res.data.github_id) {
+      if (res && res.status === 200 && res.data && res.data.github_id) {
         this.setCurrentStep(3)
       }
     },
