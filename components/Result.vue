@@ -43,7 +43,9 @@
           <ConnectWallet :disabled="currentStep !== 1" />
         </template>
       </a-step>
-      <a-step title="Please read the following notes and sign if you agree">
+      <a-step
+        title="Please read the following notes and sign if you understand and agree"
+      >
         <template slot="description"
           ><div class="entry">
             <a-form>
