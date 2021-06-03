@@ -23,8 +23,14 @@
             >Buy Dev</a-button
           ></a
         >
-        <a ref="noopener noreferrer" target="_blank" href="//stakes.social">
-          <a-button type="default" class="button display-5">App</a-button></a
+        <a
+          ref="noopener noreferrer"
+          target="_blank"
+          href="//stakes.social/invite/github"
+        >
+          <a-button type="default" class="button display-5"
+            >Earn DEV</a-button
+          ></a
         >
       </div>
     </div>

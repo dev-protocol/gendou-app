@@ -12,7 +12,7 @@
         <span class="contributions-count">{{ contributions }}</span>
       </p>
       <p class="contributions-description">
-        *Geometric mean of annual<br />total contributions over the last 5 years
+        *Geometric mean of annual<br />total contributions over the last 3 years
       </p>
       <p class="center">
         <a
@@ -68,10 +68,16 @@
               :loading="entering"
               @signed="onSigned"
             />
-            <div v-if="entrySucceed" class="finished">
-              <a-icon type="check-circle" />
-              Successful entry
-            </div>
+            <aside v-if="entrySucceed">
+              <div v-if="entrySucceed" class="finished">
+                <a-icon type="check-circle" />
+                Successful entry
+              </div>
+              <a href="#earn-more-dev"
+                ><img src="/image/heart.png" alt="heart" /> How to earn more
+                DEV?</a
+              >
+            </aside>
           </div>
         </template>
       </a-step>
@@ -140,18 +146,6 @@
         </template>
       </a-step>
     </a-steps>
-
-    <div class="next">
-      <p class="description display-6">
-        Stake your DEV for an OSS project to earn
-        <a-icon v-if="stakersAPY === 0" type="loading" />
-        <span v-else>{{ stakersAPY }}</span> %/year<br />
-        and support an OSS project by
-        <a-icon v-if="creatorsAPY === 0" type="loading" />
-        <span v-else>{{ creatorsAPY }}</span> %/year
-        <a href="/" class="how-to">How to stake?</a>
-      </p>
-    </div>
 
     <CtoA />
   </section>
@@ -246,16 +240,58 @@ export default {
   justify-items: baseline;
 }
 
-.finished {
-  display: grid;
-  grid-gap: 1rem;
-  gap: 1rem;
-  grid-auto-flow: column;
-  align-items: center;
-  color: #4caf50;
-  padding: 0.8rem 1rem;
-  justify-content: start;
-  font-size: 1.5rem;
+.prepare {
+  border: 1px solid;
+  border-radius: 3px;
+  padding: 0.8rem;
+  margin-top: 1rem;
+  font-family: sans-serif;
+  h3,
+  h4 {
+    color: inherit;
+  }
+  &-items {
+    padding-left: 2rem;
+    > li {
+      > h4 {
+        font-family: 'IBM Plex mono', monospace;
+      }
+      > p {
+        margin-left: -1rem;
+        > .metamask {
+          text-decoration: underline;
+          color: inherit;
+          font-size: inherit;
+          &::after {
+            content: '↗';
+          }
+        }
+      }
+    }
+  }
+}
+
+aside {
+  .finished {
+    display: grid;
+    grid-gap: 1rem;
+    gap: 1rem;
+    grid-auto-flow: column;
+    align-items: center;
+    color: #4caf50;
+    padding: 0.8rem 1rem;
+    padding-left: 0;
+    justify-content: start;
+    font-size: 1.5rem;
+  }
+  a {
+    display: inline-block;
+    font-size: 1.2rem;
+    img {
+      height: 1.2rem;
+      animation: cycle 1s linear infinite;
+    }
+  }
 }
 
 .button {
@@ -366,35 +402,6 @@ export default {
   }
 }
 
-.prepare {
-  border: 1px solid;
-  border-radius: 3px;
-  padding: 0.8rem;
-  margin-top: 1rem;
-  font-family: sans-serif;
-  h3,
-  h4 {
-    color: inherit;
-  }
-  &-items {
-    padding-left: 2rem;
-    > li {
-      > h4 {
-        font-family: 'IBM Plex mono', monospace;
-      }
-      > p {
-        margin-left: -1rem;
-        > .metamask {
-          text-decoration: underline;
-          &::after {
-            content: '↗';
-          }
-        }
-      }
-    }
-  }
-}
-
 .result {
   display: grid;
   gap: 1rem;
@@ -441,25 +448,6 @@ export default {
       font-size: 14px;
       text-align: center;
       font-weight: normal;
-    }
-  }
-}
-
-.content {
-  .connect-github-app {
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-
-  .next {
-    .description {
-      position: relative;
-      font-size: 16px;
-      line-height: 1.6em;
-      text-align: center;
-      .how-to {
-        border-bottom: 3px solid;
-      }
     }
   }
 }

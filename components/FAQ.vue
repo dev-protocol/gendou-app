@@ -19,8 +19,8 @@
       <dl>
         <dt>Campaign Period</dt>
         <dd>
-          Entry: June 3 - June 17, 23:59 UTC. Determination: June 24. Claimable:
-          July 7
+          Entry: June 3 - July 1, 23:59 UTC. [Scheduled]Review completion: July
+          31. [Scheduled]Claimable: August 20
         </dd>
         <dt>Details</dt>
         <dd>
@@ -29,7 +29,7 @@
             >geometric mean of annual public contributions on GitHub in the last
             3 years period</strong
           >
-          (2028-05-01 to 2021-05-01), you'll get at most 1000 DEV tokens. We're
+          (2018-05-01 to 2021-05-01), you'll get at most 1000 DEV tokens. We're
           giving out the total amount of 283,000 DEV to the first 2,203
           applicants sorted by contributions that applied users of. If you're
           willing to join, please take advantage of the program while you can.
