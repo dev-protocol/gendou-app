@@ -43,10 +43,10 @@ export const actions = {
     commit('setGitHubId', githubId)
     const { data } = await fetchPrizeInfo(this.$axios, githubId)
 
-    if (data.reward) {
+    if (data && data.reward) {
       commit('setReward', toNaturalNumber(data.reward))
     }
-    if (data.contributions) {
+    if (data && data.contributions) {
       commit('setContributions', data.contributions)
     }
   },

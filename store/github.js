@@ -49,7 +49,7 @@ export const actions = {
       reward,
       access_token: accessToken,
       contributions,
-    } = res.data
+    } = res.data || {}
     accessToken && commit('setAccessToken', accessToken)
     githubId && commit('setUsername', githubId)
     reward && commit('setReward', toNaturalNumber(reward), { root: true })
