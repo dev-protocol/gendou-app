@@ -169,6 +169,10 @@
     </aside>
 
     <CtoA />
+
+    <aside class="faq">
+      <FAQ />
+    </aside>
   </section>
 </template>
 
@@ -321,6 +325,9 @@ aside {
     p {
       color: inherit;
     }
+  }
+  &.faq {
+    margin: 12rem 0;
   }
 }
 

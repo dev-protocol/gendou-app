@@ -128,6 +128,67 @@
       </p>
     </li>
     <li>
+      <h3>When will the reward be distributed?</h3>
+      <p>
+        The distribution of rewards is scheduled to start on August 20th. But it
+        may change.
+      </p>
+    </li>
+    <li>
+      <h3>What is a Github commit?</h3>
+      <p>It's about recording what you've done in the Github Repository.</p>
+    </li>
+    <li>
+      <h3>How is the number of commits calculated?</h3>
+      <p>
+        Calculated based on the geometric mean of annual public commits to
+        GitHub over the last three years.
+      </p>
+    </li>
+    <li>
+      <h3>How many commits do I need to distribute?</h3>
+      <p>
+        It is calculated based on the geometric mean of the past 3 years, and
+        those who have a result of 300 or more are eligible. However, if the
+        number of applicants exceeds the target, the results will be distributed
+        in descending order.
+      </p>
+    </li>
+    <li>
+      <h3>Why are private commits not covered?</h3>
+      <p>
+        This Airdrop is aimed at contributors to the OSS ecosystem. In the case
+        of private commit, it is excluded because there are many commits other
+        than OSS.
+      </p>
+    </li>
+    <li>
+      <h3>How long can I enter?</h3>
+      <p>Entry is open until 23:59:59 UTC on July 1st.</p>
+    </li>
+    <li>
+      <h3>How is it distributed</h3>
+      <p>
+        After accepting the entry, we will examine the entry contents and
+        confirm the target person. Will be distributed after that.
+      </p>
+    </li>
+    <li>
+      <h3>What do I need to get paid</h3>
+      <p>
+        To create an Ethereum transaction for claiming purposes, a small amount
+        of ETH is consumed as a gas fee. The gas fee will vary depending on
+        Ethereum congestion, but it is safe to set aside around 0.005 ETH.
+      </p>
+    </li>
+    <li>
+      <h3>Can I enter for my friends instead?</h3>
+      <p>
+        If you enter using someone else's Github username, it will be
+        fraudulent.
+      </p>
+    </li>
+    <li>
       <h3>Learn more</h3>
       <iframe
         src="https://drive.google.com/file/d/1awsXIOl7cuX8hgDHfMI7q5xKwImEpMsN/preview"
@@ -135,6 +196,7 @@
         width="640"
         height="480"
       ></iframe>
+      <p><LinkToFAQ /></p>
     </li>
   </ul>
 </template>
