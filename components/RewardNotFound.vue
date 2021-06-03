@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <CtoA transparent="true" class="ctoa" />
+    <CtoA :transparent="true" class="ctoa" />
   </div>
 </template>
 

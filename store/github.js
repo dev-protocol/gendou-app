@@ -44,10 +44,16 @@ export const actions = {
     commit('setCode', code)
 
     const res = await _fetchInfoByCode(this.$axios, code)
-    commit('setAccessToken', res.data.access_token)
-    commit('setUsername', res.data.github_id)
-    commit('setReward', toNaturalNumber(res.data.reward), { root: true })
-    commit('setContributions', res.data.contributions, { root: true })
+    const {
+      github_id: githubId,
+      reward,
+      access_token: accessToken,
+      contributions,
+    } = res.data
+    accessToken && commit('setAccessToken', accessToken)
+    githubId && commit('setUsername', githubId)
+    reward && commit('setReward', toNaturalNumber(reward), { root: true })
+    contributions && commit('setContributions', contributions, { root: true })
   },
   generateReuqestState({ commit }) {
     const state = uuidv4()
