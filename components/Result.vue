@@ -85,10 +85,10 @@
         <template slot="description"
           ><div>
             <p>
-              Entry is closed on June 3. Come back here on June 3 and check your
-              determined claimable reward. Be sure to follow us on Twitter and
-              join Discord to be the first to know when the determind your
-              reward!
+              Entry is closed on July 1, 23:59 UTC. Come back here on July 31
+              and check your determined claimable reward. Be sure to follow us
+              on Twitter and join Discord to be the first to know when the
+              determind your reward!
             </p>
             <ul class="social-links">
               <li>
@@ -147,6 +147,18 @@
       </a-step>
     </a-steps>
 
+    <aside class="flow disclaimer">
+      <h3>Disclaimer</h3>
+      <ol>
+        <li>Entry outside the period is excluded.</li>
+        <li>Unauthorized commits using BOT or tools are excluded.</li>
+        <li>Multiple entries are excluded.</li>
+        <li>
+          If you use another person's Github username, it will be excluded.
+        </li>
+      </ol>
+    </aside>
+
     <CtoA />
   </section>
 </template>
@@ -155,10 +167,10 @@
 import { mapActions, mapMutations, mapState } from 'vuex'
 
 const agreementsOptions = [
-  'Your claimable reward is undecided at the time of entry',
+  'Your claimable reward is undecided at the time of entry.',
   'After closing, the all entries are sorted by the number of calculated contributions and then mapped to the rewards table. Even if the calculated contributions meet the criteria for the reward table, the result of the sorting process may result in the quota being moved down.',
   'Entries with tampered contributions will be excluded by review.',
-  'Entries is open for 2 weeks, then reviewed, and claimable after X weeks.',
+  'Entries is open until July 1, 23:59 UTC, then reviewed, and claimable scheduled at August 20.',
 ]
 
 export default {
@@ -290,6 +302,15 @@ aside {
     img {
       height: 1.2rem;
       animation: cycle 1s linear infinite;
+    }
+  }
+  &.disclaimer {
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 0.8rem;
+
+    h3,
+    p {
+      color: inherit;
     }
   }
 }
