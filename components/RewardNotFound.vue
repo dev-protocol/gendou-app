@@ -16,7 +16,7 @@
       <div class="button-wrapper">
         <a
           ref="noopener noreferrer"
-          href="//app.uniswap.org/#/swap?outputCurrency=0x5caf454ba92e6f2c929df14667ee360ed9fd5b26"
+          href="//app.uniswap.org/#/swap?outputCurrency=0x5caf454ba92e6f2c929df14667ee360ed9fd5b26&use=V2"
           target="_blank"
         >
           <a-button type="default" class="button display-5"

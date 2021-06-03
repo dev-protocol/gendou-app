@@ -198,12 +198,10 @@ export default {
   },
   async fetch() {
     // initialize step
-    this.setCurrentStep(0)
-
-    // If the GitHub app has already been connected, use step 2.
-    if (this.accessToken !== '') {
-      this.setCurrentStep(1)
-    }
+    const step =
+      this.accessToken && this.walletConnected ? 2 : this.accessToken ? 1 : 0
+    console.log({ step })
+    this.setCurrentStep(step)
 
     await this.initDevInfo()
   },
@@ -216,6 +214,7 @@ export default {
       claimUrl: (state) => state.claimUrl,
       contributions: (state) => state.contributions,
       currentStep: (state) => state.claim.currentStep,
+      walletConnected: (state) => state.claim.walletConnected,
       accessToken: (state) => state.github.accessToken,
       username: (state) => state.github.username,
       entrySucceed: (state) =>

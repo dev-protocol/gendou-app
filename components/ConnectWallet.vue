@@ -27,8 +27,8 @@ export default Vue.extend({
     }
   },
   fetch() {
-    console.log(this.$web3modal.getProvider())
-    this.isConnected = this.$web3modal.getProvider() !== undefined
+    this.isConnected = Boolean(this.$web3modal.getProvider())
+    this.setWalletConnected(this.isConnected)
   },
   computed: {
     ...mapState({
@@ -43,6 +43,7 @@ export default Vue.extend({
     },
     ...mapMutations({
       setCurrentStep: 'claim/setCurrentStep',
+      setWalletConnected: 'claim/setWalletConnected',
     }),
   },
 })
