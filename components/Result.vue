@@ -42,6 +42,9 @@
       <a-step>
         <template slot="description">
           <ConnectWallet :disabled="currentStep !== 1" />
+          <a-tooltip placement="top" title="It requires Ethereum wallet">
+            <a-icon type="question-circle" />
+          </a-tooltip>
         </template>
       </a-step>
       <a-step
@@ -61,16 +64,21 @@
               :message="'Please try again: ' + entryError"
               banner
             />
-            <SignButton
-              :message="username"
-              :disabled="
-                currentStep !== 2 ||
-                agreements.length < agreementsOptionsCount ||
-                entrySucceed
-              "
-              :loading="entering"
-              @signed="onSigned"
-            />
+            <span>
+              <SignButton
+                :message="username"
+                :disabled="
+                  currentStep !== 2 ||
+                  agreements.length < agreementsOptionsCount ||
+                  entrySucceed
+                "
+                :loading="entering"
+                @signed="onSigned"
+              />
+              <a-tooltip placement="top" title="It requires Ethereum wallet">
+                <a-icon type="question-circle" />
+              </a-tooltip>
+            </span>
             <aside v-if="entrySucceed">
               <div v-if="entrySucceed" class="finished">
                 <a-icon type="check-circle" />
