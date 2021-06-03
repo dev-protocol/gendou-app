@@ -23,7 +23,7 @@
             contributions +
             ' and claimable reward was ' +
             prize +
-            ' DEV%0ADev Airdrop 🎁🎁 Get DEV tokens with your contributions to OSS 👩‍💻👨‍💻%0A%0AFor most active GitHub users!&url=https://airdrop.devprotocol.xyz&hashtags=devprotocol'
+            ' $DEV%0ADev Airdrop 🎁🎁 Get DEV tokens with your contributions to OSS 👩‍💻👨‍💻%0A%0ACheck your rewards and contributions to OSS!&url=https://airdrop.devprotocol.xyz&hashtags=devprotocol'
           "
           target="_blank"
         >
@@ -125,7 +125,7 @@
                     A wallet that supports Ethereum and any ERC-20 tokens,
                     <a
                       ref="noopener noreferrer"
-                      class="metamask"
+                      class="external-link"
                       target="_blank"
                       href="//metamask.io"
                       >MetaMask</a
@@ -140,6 +140,13 @@
                     small amount of ETH is consumed as a gas fee. The gas fee
                     will vary depending on Ethereum congestion, but it is safe
                     to set aside around <i>0.005</i> ETH.
+                    <a
+                      ref="noopener noreferrer"
+                      class="external-link"
+                      target="_blank"
+                      href="//ethereum.org/en/get-eth/"
+                      >Get ETH</a
+                    >
                   </p>
                 </li>
               </ol>
@@ -272,7 +279,7 @@ export default {
       }
       > p {
         margin-left: -1rem;
-        > .metamask {
+        > .external-link {
           text-decoration: underline;
           color: inherit;
           font-size: inherit;
