@@ -135,18 +135,14 @@
       </p>
     </li>
     <li>
-      <h3>What is a Github commit?</h3>
-      <p>It's about recording what you've done in the Github Repository.</p>
-    </li>
-    <li>
-      <h3>How is the number of commits calculated?</h3>
+      <h3>How is the number of contributions calculated?</h3>
       <p>
-        Calculated based on the geometric mean of annual public commits to
+        Calculated based on the geometric mean of annual public contributions on
         GitHub over the last three years.
       </p>
     </li>
     <li>
-      <h3>How many commits do I need to distribute?</h3>
+      <h3>How many contributions do I need to distribute?</h3>
       <p>
         It is calculated based on the geometric mean of the past 3 years, and
         those who have a result of 300 or more are eligible. However, if the
@@ -155,11 +151,11 @@
       </p>
     </li>
     <li>
-      <h3>Why are private commits not covered?</h3>
+      <h3>Why are private contributions not covered?</h3>
       <p>
         This Airdrop is aimed at contributors to the OSS ecosystem. In the case
-        of private commit, it is excluded because there are many commits other
-        than OSS.
+        of private commit, it is excluded because there are many contributions
+        other than OSS.
       </p>
     </li>
     <li>
@@ -174,7 +170,7 @@
       </p>
     </li>
     <li>
-      <h3>What do I need to get paid</h3>
+      <h3>What do I need to claim</h3>
       <p>
         To create an Ethereum transaction for claiming purposes, a small amount
         of ETH is consumed as a gas fee. The gas fee will vary depending on
