@@ -13,7 +13,7 @@
         Sorry you weren't on this Airdrop audience list.
       </p>
       <p class="description">
-        Please note that we do not accept inquiries related to Reward
+        <b>Note:</b> We do not accept inquiries related to Reward
       </p>
 
       <div class="button-wrapper">
