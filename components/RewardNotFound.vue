@@ -9,7 +9,10 @@
     <div class="section-border"></div>
 
     <div class="next">
-      <p class="description display-5">
+      <p v-if="reason === 'not entry'" class="description display-5">
+        Not entry.
+      </p>
+      <p v-else class="description display-5">
         Sorry you weren't on this Airdrop audience list.
       </p>
       <p class="description">
@@ -41,6 +44,18 @@
     <CtoA :transparent="true" class="ctoa" />
   </div>
 </template>
+
+<script>
+import { mapState } from 'vuex'
+
+export default {
+  computed: {
+    ...mapState({
+      reason: (state) => state.rewardNotFoundReason,
+    }),
+  },
+}
+</script>
 
 <style lang="scss" scoded>
 @media (max-width: 576px) {
