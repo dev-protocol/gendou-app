@@ -47,10 +47,11 @@
         Dear all OSS developers, thank you for supporting the OSS ecosystem thus
         far. Dev Protocol will reward up to $2,100,000 to the most active GitHub
         users as a tribute and thank you for all your efforts.<br />
-        <span style="color: #ff3815"
-          >The Airdrop application has already ended. Those who have not applied
-          before will not receive it</span
-        >
+        <br />
+        <span style="color: #ff3815">
+          The Airdrop application has already ended. Those who did not apply
+          before will not receive it.
+        </span>
       </p>
       <div class="quote">
         <q
@@ -239,7 +240,8 @@ dd {
   p {
     margin-bottom: 10px;
     font-size: 1rem;
-    line-height: 1.4rem;
+    line-height: 1.8rem;
+    text-align: center;
     font-family: 'IBM Plex Mono', monospace;
   }
 }

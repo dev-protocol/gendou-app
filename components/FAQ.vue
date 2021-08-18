@@ -21,10 +21,11 @@
         <dd>
           Entry: June 3 - July 1, 23:59 UTC. <br />
           Review completion: July 31. <br />
-          Claimable: August 20
+          Claimable: August 20, 2021. <br />
+          Deadline: November 30, 2021. <br />
           <p style="color: #ff3815">
-            Rewards will be picked up by November 30th. You will not be able to
-            receive it after the period
+            After November 30th, you will not be able to receive your reward. So
+            please claim your reward before the deadline.
           </p>
         </dd>
         <dt>Details</dt>
@@ -74,7 +75,7 @@
               quota is full.</small
             ><br />
             <small>
-              *Please note that we do not accept inquiries related to Reward.
+              *<b>Note</b>: We do not accept inquiries related to Reward.
             </small>
           </p>
         </dd>
