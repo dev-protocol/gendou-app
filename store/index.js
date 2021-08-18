@@ -12,6 +12,7 @@ export const state = () => ({
   account: '',
   githubId: '',
   reward: 0,
+  rewardNotFoundReason: '',
   rewardUSD: 0,
   claimUrl: '',
   stakersAPY: 0,
@@ -30,6 +31,8 @@ export const mutations = {
   setAccount: (state, value) => (state.account = value),
   setGitHubId: (state, value) => (state.githubId = value),
   setReward: (state, value) => (state.reward = value),
+  setRewardNotFoundReason: (state, value) =>
+    (state.rewardNotFoundReason = value),
   setContributions: (state, value) => (state.contributions = value),
   setRewardUSD: (state, value) => (state.rewardUSD = value),
   setStakersAPY: (state, value) => (state.stakersAPY = value),

@@ -19,6 +19,7 @@ export const mutations = {
 export const actions = {
   async fetchAirdropRewardInfo({ commit }, { address, sign }) {
     const res = await fetchAirdropReward(this.$axios, address, sign)
+    const reason = res.data.message
     const reward = toNaturalNumber(res.data.reward)
     const claimUrl =
       reward === 100
@@ -30,5 +31,6 @@ export const actions = {
         : undefined
     commit('setClaimUrl', claimUrl, { root: true })
     commit('setReward', reward, { root: true })
+    commit('setRewardNotFoundReason', reason, { root: true })
   },
 }
