@@ -1,10 +1,12 @@
 import { toNaturalNumber } from '~/utils/bignumber'
 import { fetchAirdropReward } from '~/utils/gendou-backend'
 
-// TODO: use temporary value now...
-const REWARD_100_URL = 'https://localhost:7071/v2/reward1'
-const REWARD_400_URL = 'https://localhost:7071/v2/reward2'
-const REWARD_1000_URL = 'https://localhost:7071/v2/reward3'
+const REWARD_100_URL =
+  'https://app.iroiro.social/#/explore/token/0xA2dFDeac7B4456b0A44f36F6111218688D9b1C7a/distributors/0x689e325b55cead95c23cbd0e4b3a6d6ebfaf8fa7/campaigns/8'
+const REWARD_400_URL =
+  'https://app.iroiro.social/#/explore/token/0xA2dFDeac7B4456b0A44f36F6111218688D9b1C7a/distributors/0x689e325b55cead95c23cbd0e4b3a6d6ebfaf8fa7/campaigns/7'
+const REWARD_1000_URL =
+  'https://app.iroiro.social/#/explore/token/0xA2dFDeac7B4456b0A44f36F6111218688D9b1C7a/distributors/0x689e325b55cead95c23cbd0e4b3a6d6ebfaf8fa7/campaigns/6'
 
 export const state = () => ({
   currentStep: 0,
