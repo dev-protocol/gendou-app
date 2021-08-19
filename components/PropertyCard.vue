@@ -3,7 +3,11 @@
     <div class="property-card">
       <div
         class="property-card-cover-image"
-        :style="{ 'background-image': 'url(' + property.imageUrl + ')' }"
+        :style="[
+          coverImage
+            ? { 'background-image': 'url(' + coverImage + ')' }
+            : { 'background-image': 'url(' + property.imageUrl + ')' },
+        ]"
       />
       <a
         :href="'https://stakes.social/' + property.address"
@@ -17,7 +21,9 @@
           </span>
           <div class="property-card-flex-row">
             <div class="property-card-avatar-image">
-              <img :src="property.author.imageUrl" />
+              <img
+                :src="profileImage ? profileImage : property.author.imageUrl"
+              />
             </div>
             <div class="property-card-flex-column">
               <span>Creator</span>
@@ -40,6 +46,14 @@ export default {
       required: true,
       default: () => {},
     },
+    coverImage: {
+      type: String,
+      default: undefined,
+    },
+    profileImage: {
+      type: String,
+      default: undefined,
+    },
   },
   fetch() {
     console.log(this.property)
@@ -49,9 +63,8 @@ export default {
 
 <style lang="scss" scoped>
 .property-card {
-  grid-template-rows: auto 1fr auto;
-  grid-template-columns: 1fr;
-  justify-content: stretch;
+  width: 100%;
+  height: 350px;
   border: solid 1px rgba(0, 0, 0, 0.1);
   border-bottom: 0;
   border-radius: 6px;
@@ -61,14 +74,12 @@ export default {
   pointer-events: auto;
   background: #fff;
   overflow: hidden;
-  height: 350px;
-  width: 350px;
 
   &-cover-image {
     position: relative;
     background-size: cover;
     background-position: center;
-    padding-top: 20%;
+    padding-top: 40%;
   }
 
   &-content {
@@ -82,20 +93,21 @@ export default {
   }
 
   &-title {
-    font-size: 1.4em;
+    font-size: 1em;
     font-weight: 400;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
   &-description {
-    color: grey;
-    margin: 0;
     flex-grow: 1;
-    font-size: 0.95em;
-    overflow: hidden;
+    margin: 0;
+    max-height: 100px;
+    color: grey;
+    font-size: 0.8em;
     text-overflow: ellipsis;
     display: -webkit-box;
+    overflow: hidden;
     -webkit-line-clamp: 5; /* number of lines to show */
     -webkit-box-orient: vertical;
   }
@@ -113,7 +125,7 @@ export default {
     padding-bottom: 16px;
     span {
       margin-left: 10px;
-      font-size: 0.9em;
+      font-size: 0.8em;
     }
   }
   &-avatar-image {

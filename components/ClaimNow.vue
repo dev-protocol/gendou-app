@@ -10,6 +10,11 @@
         </p>
       </div>
 
+      <div v-if="claimUrl !== ''" class="warning">
+        Rewards will be picked up by November 30th.<br />
+        You will not be able to receive it after the period
+      </div>
+
       <div v-if="claimUrl === ''" class="connect-github-app">
         <a-divider class="divider" />
         <ConnectGitHubApp />
@@ -36,43 +41,148 @@
 
       <div class="next">
         <p class="description display-6">
-          Stake your DEV for an OSS project to earn
+          Stake your DEV for an
+          <a href="#properties" style="color: #007afd">OSS project</a> to earn
           <a-icon v-if="stakersAPY === 0" type="loading" />
           <span v-else>{{ stakersAPY }}</span> %/year<br />
           and support an OSS project by
           <a-icon v-if="creatorsAPY === 0" type="loading" />
           <span v-else>{{ creatorsAPY }}</span> %/year
-          <a href="/" class="how-to">How to stake?</a>
+          <a
+            href="https://docs.devprotocol.xyz/en/stakes-social/token-guide/"
+            class="how-to"
+            target="_blank"
+            >How to stake?</a
+          >
         </p>
       </div>
     </section>
 
     <section v-if="claimUrl" class="then">
       <div class="stakes-social">
-        <h2>
-          Stake the DEV you receive to OSS project Staking will help developers
-          and increase your DEV
+        <h2 id="properties">
+          Stake the DEV you receive to OSS project Staking<br />
+          Staking will help developers and increase your DEV
         </h2>
-        <div class="stakes-social-property-card-list">
-          <PropertyCard
-            v-for="(property, idx) in properties"
-            :key="idx"
-            :property="property"
-          />
-        </div>
-        <img
-          width="100%"
-          src="https://devprotocol.xyz/assets/img/macbook_stakes.png"
-        />
-        <p class="display-5">Explore the 1,600+ OSS projects on</p>
+
+        <a-row class="card-row" :gutter="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+          <a-col class="card-col" :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+            <p class="card-title">
+              This project is recommended for<br />
+              Front-End Developer
+            </p>
+          </a-col>
+          <a-col class="card-col" :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <p class="card-title">This project is recommended for Pythonista</p>
+          </a-col>
+          <a-col class="card-col" :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <p class="card-title">This project is recommended for Vimmer</p>
+          </a-col>
+          <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <PropertyCard
+              :property="properties[0]"
+              cover-image="/image/property/redux-image.png"
+            />
+          </a-col>
+          <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <PropertyCard :property="properties[1]" />
+          </a-col>
+          <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <PropertyCard
+              :property="properties[2]"
+              cover-image="/image/property/no-image.png"
+            />
+          </a-col>
+          <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <PropertyCard :property="properties[3]" />
+          </a-col>
+        </a-row>
+
+        <a-row class="card-row" :gutter="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+          <a-col class="card-col" :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+            <p class="card-title">
+              This project is recommended for<br />
+              Blockchain Developer
+            </p>
+          </a-col>
+          <a-col class="card-col" :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+            <p class="card-title">
+              This project is recommended for<br />
+              Back-End Environment
+            </p>
+          </a-col>
+          <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <PropertyCard
+              :property="properties[4]"
+              profile-image="/image/property/no-profile.png"
+            />
+          </a-col>
+          <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <PropertyCard :property="properties[5]" />
+          </a-col>
+          <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <PropertyCard :property="properties[6]" />
+          </a-col>
+          <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <PropertyCard
+              :property="properties[7]"
+              cover-image="/image/property/no-image.png"
+              profile-image="/image/property/no-profile.png"
+            />
+          </a-col>
+        </a-row>
+
+        <a-row class="card-row" :gutter="{ xs: 8, sm: 16, md: 24, lg: 32 }">
+          <a-col class="card-col" :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+            <p class="card-title">
+              There’s also many interesting projects that you can support<br />
+              to help them in their development
+            </p>
+          </a-col>
+          <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <PropertyCard :property="properties[8]" />
+          </a-col>
+          <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <PropertyCard :property="properties[9]" />
+          </a-col>
+          <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <PropertyCard :property="properties[10]" />
+          </a-col>
+          <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+            <PropertyCard
+              :property="properties[11]"
+              profile-image="/image/property/no-profile.png"
+            />
+          </a-col>
+        </a-row>
+
+        <p class="display-5" style="margin-bottom: 0">
+          Explore the 1,600+ OSS projects on
+        </p>
+
         <img
           width="240px"
           src="https://devprotocol.xyz/assets/img/Stakes.svg"
         />
+
         <div class="ss-explore-button">
           <a ref="noopener noreferrer" href="//stakes.social/" target="_blank">
             <a-button type="default" class="button display-5">
               Explore
+            </a-button>
+          </a>
+        </div>
+
+        <p class="display-5" style="margin-top: 80px">Learn how to stake</p>
+
+        <div class="ss-explore-button">
+          <a
+            ref="noopener noreferrer"
+            href="https://docs.devprotocol.xyz/en/stakes-social/token-guide/"
+            target="_blank"
+          >
+            <a-button type="default" class="button display-5">
+              How to stake
             </a-button>
           </a>
         </div>
@@ -140,6 +250,18 @@ export default {
             name: 'nolimits4web',
             imageUrl:
               'https://storageaccountdevfobc15.blob.core.windows.net/dev-for-apps-images/assets/999588_e4bbaa7512.jpeg',
+          },
+        },
+        {
+          name: 'hhatto/autopep8',
+          address: '0x6FC83305afb1083CE1Db511d252B47A38CFCE1f7',
+          imageUrl: 'https://asset.stakes.social/logo/dev.svg',
+          description:
+            'A tool that automatically formats Python code to conform to the PEP 8 style guide.',
+          author: {
+            name: 'hhatto',
+            imageUrl:
+              'https://storageaccountdevfobc15.blob.core.windows.net/dev-for-apps-images/assets/0x006f7DA5fE8B1a45D364a677499333099CDb4b75/face_b3bec3b50c.jpg',
           },
         },
         {
@@ -241,18 +363,6 @@ export default {
           },
         },
         {
-          name: 'hhatto/autopep8',
-          address: '0x6FC83305afb1083CE1Db511d252B47A38CFCE1f7',
-          imageUrl: 'https://asset.stakes.social/logo/dev.svg',
-          description:
-            'A tool that automatically formats Python code to conform to the PEP 8 style guide.',
-          author: {
-            name: 'hhatto',
-            imageUrl:
-              'https://storageaccountdevfobc15.blob.core.windows.net/dev-for-apps-images/assets/0x006f7DA5fE8B1a45D364a677499333099CDb4b75/face_b3bec3b50c.jpg',
-          },
-        },
-        {
           name: 'netbootxyz/netboot.xyz',
           address: '0xdFB462BfD71128b96DB742a2621aEb801c4FD611',
           imageUrl:
@@ -315,11 +425,17 @@ export default {
   }
 }
 
+.warning {
+  margin-top: 3rem;
+  text-align: center;
+  color: #ff3815;
+}
+
 .claim-url {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin: 7rem auto;
+  margin: 3rem auto;
   text-align: center;
   .tweet {
     background: #1da1f2;
@@ -337,15 +453,25 @@ export default {
 .stakes-social {
   text-align: center;
   h2 {
+    margin-bottom: 90px;
     font-family: 'Whyte Inktrap', sans-serif;
     font-weight: bold;
-    font-size: 2.8rem;
+    font-size: 1.6rem;
     @media (max-width: 576px) {
-      font-size: 4rem;
+      margin-bottom: 50px;
+      font-size: 1.2rem;
+    }
+  }
+  .card-row {
+    margin-bottom: 90px;
+    .card-col {
+      .card-title {
+        font-size: 0.9rem;
+      }
     }
   }
   .ss-explore-button {
-    margin-top: 4rem;
+    margin-top: 2rem;
   }
 
   &-property-card-list {
