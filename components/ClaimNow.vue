@@ -72,10 +72,10 @@
               Front-End Developer
             </p>
           </a-col>
-          <a-col class="card-col" :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+          <a-col class="card-col" :xs="0" :sm="0" :md="6" :lg="6" :xl="6">
             <p class="card-title">This project is recommended for Pythonista</p>
           </a-col>
-          <a-col class="card-col" :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
+          <a-col class="card-col" :xs="0" :sm="0" :md="6" :lg="6" :xl="6">
             <p class="card-title">This project is recommended for Vimmer</p>
           </a-col>
           <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
@@ -87,6 +87,23 @@
           <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
             <PropertyCard :property="properties[1]" />
           </a-col>
+
+          <a-col
+            class="card-col space-mobile"
+            :xs="24"
+            :sm="24"
+            :md="0"
+            :lg="0"
+            :xl="0"
+          ></a-col>
+
+          <a-col class="card-col" :xs="12" :sm="12" :md="0" :lg="0" :xl="0">
+            <p class="card-title">This project is recommended for Pythonista</p>
+          </a-col>
+          <a-col class="card-col" :xs="12" :sm="12" :md="0" :lg="0" :xl="0">
+            <p class="card-title">This project is recommended for Vimmer</p>
+          </a-col>
+
           <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
             <PropertyCard
               :property="properties[2]"
@@ -105,7 +122,7 @@
               Blockchain Developer
             </p>
           </a-col>
-          <a-col class="card-col" :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+          <a-col class="card-col" :xs="0" :sm="0" :md="12" :lg="12" :xl="12">
             <p class="card-title">
               This project is recommended for<br />
               Back-End Environment
@@ -120,6 +137,23 @@
           <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
             <PropertyCard :property="properties[5]" />
           </a-col>
+
+          <a-col
+            class="card-col space-mobile"
+            :xs="24"
+            :sm="24"
+            :md="0"
+            :lg="0"
+            :xl="0"
+          ></a-col>
+
+          <a-col class="card-col" :xs="24" :sm="24" :md="0" :lg="0" :xl="0">
+            <p class="card-title">
+              This project is recommended for<br />
+              Back-End Environment
+            </p>
+          </a-col>
+
           <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
             <PropertyCard :property="properties[6]" />
           </a-col>
@@ -145,6 +179,16 @@
           <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
             <PropertyCard :property="properties[9]" />
           </a-col>
+
+          <a-col
+            class="card-col space-mobile"
+            :xs="24"
+            :sm="24"
+            :md="0"
+            :lg="0"
+            :xl="0"
+          ></a-col>
+
           <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
             <PropertyCard :property="properties[10]" />
           </a-col>
@@ -463,8 +507,11 @@ export default {
     }
   }
   .card-row {
-    margin-bottom: 90px;
+    margin-bottom: 4rem;
     .card-col {
+      &.space-mobile {
+        margin-bottom: 4rem;
+      }
       .card-title {
         font-size: 0.9rem;
       }

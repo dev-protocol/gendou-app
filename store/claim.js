@@ -1,4 +1,5 @@
 import { toNaturalNumber } from '~/utils/bignumber'
+import { fetchAirdropReward } from '~/utils/gendou-backend'
 
 // TODO: use temporary value now...
 const REWARD_100_URL = 'https://localhost:7071/v2/reward1'
@@ -16,9 +17,8 @@ export const mutations = {
 }
 
 export const actions = {
-  fetchAirdropRewardInfo({ commit }, { address, sign }) {
-    // const res = await fetchAirdropReward(this.$axios, address, sign)
-    const res = { data: { reward: '1000000000000000000000' } }
+  async fetchAirdropRewardInfo({ commit }, { address, sign }) {
+    const res = await fetchAirdropReward(this.$axios, address, sign)
     const reason = res.data.message
     const reward = toNaturalNumber(res.data.reward)
     const claimUrl =
