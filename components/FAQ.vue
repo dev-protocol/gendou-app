@@ -22,9 +22,9 @@
           Entry: June 3 - July 1, 23:59 UTC. <br />
           Review completion: July 31. <br />
           Claimable: August 20, 2021. <br />
-          Deadline: November 30, 2021. <br />
+          Deadline: October 31, 2021. <br />
           <p style="color: #ff3815">
-            After November 30th, you will not be able to receive your reward. So
+            After October 30th, you will not be able to receive your reward. So
             please claim your reward before the deadline.
           </p>
         </dd>
@@ -39,6 +39,18 @@
           giving out the total amount of 283,000 DEV to the first 2,203
           applicants sorted by contributions that applied users of. If you're
           willing to join, please take advantage of the program while you can.
+        </dd>
+        <dt>List of target people</dt>
+        <dd>
+          The Dev Protocol team reviewed the registered applications and
+          rewarded the following developers. Please check the target developer
+          from this list.<br />
+          <a
+            ref="noopener noreferrer"
+            href="https://dev-protocol.github.io/github-airdrop/"
+            target="_blank"
+            >→ target developer list</a
+          >
         </dd>
         <dt>Rewards table</dt>
         <dd>

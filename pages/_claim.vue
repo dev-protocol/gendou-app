@@ -42,7 +42,6 @@ export default Vue.extend({
 }
 .qa {
   margin: 6rem auto;
-  margin-top: 24rem;
   @media (min-width: 980px) {
     margin-top: inherit;
   }
