@@ -40,6 +40,18 @@
           applicants sorted by contributions that applied users of. If you're
           willing to join, please take advantage of the program while you can.
         </dd>
+        <dt>List of target people</dt>
+        <dd>
+          The Dev Protocol team reviewed the registered applications and
+          rewarded the following developers. Please check the target developer
+          from this list.<br />
+          <a
+            ref="noopener noreferrer"
+            href="https://dev-protocol.github.io/github-airdrop/"
+            target="_blank"
+            >→ target developer list</a
+          >
+        </dd>
         <dt>Rewards table</dt>
         <dd>
           <table>

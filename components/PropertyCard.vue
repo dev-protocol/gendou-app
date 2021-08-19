@@ -87,9 +87,10 @@ export default {
     grid-auto-flow: row;
     grid-gap: 0.7rem;
     align-content: baseline;
-    text-align: left;
     grid-template-rows: auto 2fr 1fr;
     padding: 4px 16px 0 16px;
+    height: 75%;
+    text-align: left;
   }
 
   &-title {
@@ -116,6 +117,10 @@ export default {
     img {
       border-radius: 90px;
     }
+    @media (max-width: 576px) {
+      flex-direction: column;
+      align-items: center;
+    }
   }
   &-flex-column {
     display: flex;
@@ -123,9 +128,15 @@ export default {
     flex-grow: 0;
     max-lines: 3;
     padding-bottom: 16px;
+    @media (max-width: 576px) {
+      align-items: center;
+    }
     span {
       margin-left: 10px;
       font-size: 0.8em;
+      @media (max-width: 576px) {
+        margin: 0;
+      }
     }
   }
   &-avatar-image {
@@ -136,6 +147,10 @@ export default {
       object-position: center;
       width: 60px;
       height: 60px;
+      @media (max-width: 576px) {
+        width: 40px;
+        height: 40px;
+      }
     }
   }
 }

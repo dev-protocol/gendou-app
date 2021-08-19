@@ -73,10 +73,16 @@
             </p>
           </a-col>
           <a-col class="card-col" :xs="0" :sm="0" :md="6" :lg="6" :xl="6">
-            <p class="card-title">This project is recommended for Pythonista</p>
+            <p class="card-title">
+              This project is recommended for<br />
+              Pythonista
+            </p>
           </a-col>
           <a-col class="card-col" :xs="0" :sm="0" :md="6" :lg="6" :xl="6">
-            <p class="card-title">This project is recommended for Vimmer</p>
+            <p class="card-title">
+              This project is recommended for<br />
+              Vimmer
+            </p>
           </a-col>
           <a-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6">
             <PropertyCard
@@ -495,7 +501,10 @@ export default {
 }
 
 .stakes-social {
+  margin: 0 auto;
+  max-width: 970px;
   text-align: center;
+
   h2 {
     margin-bottom: 90px;
     font-family: 'Whyte Inktrap', sans-serif;
