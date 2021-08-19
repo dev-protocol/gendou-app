@@ -10,7 +10,7 @@
 
     <div class="next">
       <p v-if="reason === 'not entry'" class="description display-5">
-        Not entry.
+        You could not find an entry. Entry is already over
       </p>
       <p v-else class="description display-5">
         Sorry you weren't on this Airdrop audience list.
