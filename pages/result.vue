@@ -1,7 +1,8 @@
 <template>
   <a-layout class="container fadein">
     <a-layout-content class="content">
-      <Result />
+      <Result v-if="prize > 0" />
+      <RewardNotFound v-else />
     </a-layout-content>
   </a-layout>
 </template>

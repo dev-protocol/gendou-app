@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-bottom: 80px">
+  <div>
     <div class="result">
       <p class="message display-5">Oops...</p>
       <img src="/image/pic03.png" alt="" class="heart-black" />
@@ -9,14 +9,17 @@
     <div class="section-border"></div>
 
     <div class="next">
-      <p v-if="reason === 'not entry'" class="description display-5">
-        You could not find an entry. Entry is already over
-      </p>
-      <p v-else class="description display-5">
+      <p class="description display-5">
         Sorry you weren't on this Airdrop audience list.
       </p>
       <p class="description">
-        <b>Note:</b> We do not accept inquiries related to Reward
+        Why?:
+        <a
+          ref="noopener noreferrer"
+          target="_blank"
+          href="//community.devprotocol.xyz/t/feedback-needed-a-new-formula-for-airdrop-and-some-updates/174"
+          >A new formula for airdrop and some updates</a
+        >
       </p>
 
       <div class="button-wrapper">
@@ -44,18 +47,6 @@
     <CtoA :transparent="true" class="ctoa" />
   </div>
 </template>
-
-<script>
-import { mapState } from 'vuex'
-
-export default {
-  computed: {
-    ...mapState({
-      reason: (state) => state.rewardNotFoundReason,
-    }),
-  },
-}
-</script>
 
 <style lang="scss" scoded>
 @media (max-width: 576px) {

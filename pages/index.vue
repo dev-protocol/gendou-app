@@ -18,11 +18,7 @@
           </p>
         </div>
         <div class="input-wrapper">
-          <p>
-            Press the button below to see your Reward.<br />
-            Authenticate with Wallet
-          </p>
-          <ConnectWalletWithAirdrop @open="handleStart" />
+          <InputGitHubId @startCallback="handleStart" />
         </div>
         <div class="sponsored">
           <div class="pic"><img src="/image/pic01.png" alt="sindre" /></div>
@@ -46,12 +42,7 @@
       <p>
         Dear all OSS developers, thank you for supporting the OSS ecosystem thus
         far. Dev Protocol will reward up to $2,100,000 to the most active GitHub
-        users as a tribute and thank you for all your efforts.<br />
-        <br />
-        <span style="color: #ff3815">
-          The Airdrop application has already ended. Those who did not apply
-          before will not receive it.
-        </span>
+        users as a tribute and thank you for all your efforts.
       </p>
       <div class="quote">
         <q
@@ -87,7 +78,7 @@ export default Vue.extend({
       if (mutation.type !== 'door/toggle' || mutation.payload !== true) {
         return
       }
-      this.$router.push(`/claim`)
+      this.$router.push(`/result`)
     })
   },
   beforeDestroy() {
@@ -235,15 +226,7 @@ dd {
 }
 .input-wrapper {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  p {
-    margin-bottom: 10px;
-    font-size: 1rem;
-    line-height: 1.8rem;
-    text-align: center;
-    font-family: 'IBM Plex Mono', monospace;
-  }
 }
 .sponsored {
   display: flex;
