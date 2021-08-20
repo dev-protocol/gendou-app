@@ -11,7 +11,7 @@
       </div>
 
       <div v-if="claimUrl !== ''" class="warning">
-        Rewards will be picked up by October 31th.<br />
+        Please claim by October 31st<br />
         You will not be able to receive it after the period
       </div>
 
