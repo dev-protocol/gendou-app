@@ -47,7 +47,7 @@
           from this list.<br />
           <a
             ref="noopener noreferrer"
-            href="https://dev-protocol.github.io/github-airdrop/"
+            href="https://dev-protocol.github.io/dev-airdrop/guide"
             target="_blank"
             >→ target developer list</a
           >
