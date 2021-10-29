@@ -22,11 +22,7 @@
           Entry: June 3 - July 1, 23:59 UTC. <br />
           Review completion: July 31. <br />
           Claimable: August 20, 2021. <br />
-          Deadline: October 31, 2021. <br />
-          <p style="color: #ff3815">
-            After October 31th, you will not be able to receive your reward. So
-            please claim your reward before the deadline.
-          </p>
+          Deadline: October 31, 2021.
         </dd>
         <dt>Details</dt>
         <dd>

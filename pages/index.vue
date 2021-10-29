@@ -19,10 +19,9 @@
         </div>
         <div class="input-wrapper">
           <p>
-            Press the button below to see your Reward.<br />
-            Authenticate with Wallet
+            Airdrop Campaign has ended.<br />
+            Thank you for joining the DEV Airdrop
           </p>
-          <ConnectWalletWithAirdrop @open="handleStart" />
         </div>
         <div class="sponsored">
           <div class="pic"><img src="/image/pic01.png" alt="sindre" /></div>
@@ -49,8 +48,8 @@
         users as a tribute and thank you for all your efforts.<br />
         <br />
         <span style="color: #ff3815">
-          The Airdrop application has already ended. Those who did not apply
-          before will not receive it.
+          All DEV Airdrop programs have ended. Thank you for joining the DEV
+          Airdrop
         </span>
       </p>
       <div class="quote">
